@@ -3,45 +3,50 @@ import React, { Component } from 'react';
 
 
 class PerfilPersonal extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        console.log("entre " + this.id);
-        console.log("entre " + this.props);
         this.state = {
             error: false,
-            id : this.props.match.params.id,
             isLoaded: false,
-            perfiles: []
+            perfiles: [],
+            id: props.match.params.id - 1
         }
-        }
-        componentWillMount(){
-            fetch("https://jsonplaceholder.typicode.com/users")
-              .then(res => res.json())
-              .then(
+    }
+    componentWillMount() {
+        fetch("https://jsonplaceholder.typicode.com/users")
+            .then(res => res.json())
+            .then(
                 (result) => {
-                  this.setState({
-                    isLoaded: true,
-                    perfiles: result
-                  });
+                    this.setState({
+                        isLoaded: true,
+                        perfiles: result
+                    });
                 },
                 (error) => {
-                  this.setState({
-                    isLoaded: true,
-                    error: true
-                  });
+                    this.setState({
+                        isLoaded: true,
+                        error: true
+                    });
                 }
-              )
-          }
-       
+            )
+    }
+
     render() {
-        console.log("entre " + this.id);
-        return (
-            <ul>
-                <li>{this.perfiles.id.name}</li>
-                <li>{this.perfiles.id.username}</li>
-                <li>{this.perfiles.id.mail}</li>
-            </ul>
-        );
+        const { error, isLoaded, perfiles } = this.state;
+        if (error) {
+            return <div>Error: {error.message}</div>;
+        } else if (!isLoaded) {
+            return <div>Loading...</div>;
+        } else {
+            console.log(this.state.id);
+            return (
+                <ul>
+                    <li>Nombre: {this.state.perfiles[this.state.id].name}</li>
+                    <li>Usuario: {this.state.perfiles[this.state.id].username}</li>
+                    <li>Mail: {this.state.perfiles[this.state.id].email}</li>
+                </ul>
+            );
+        }
     }
 }
 

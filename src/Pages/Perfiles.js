@@ -40,7 +40,6 @@ class Perfiles extends Component {
     } else {
       return (
         <ul>
-            
           {perfiles.map(
             perfil=><Perfil perfil={perfil}  />)
           }

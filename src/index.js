@@ -20,7 +20,7 @@ ReactDOM.render(<BrowserRouter>
     <Route component={Header} />
     <Route exact path='/' component={Home} />
     <Route exact path='/perfiles/' component={Perfiles} />
-    <Route exact path='/perfilPersonal/' component={PerfilPersonal} />
+    <Route exact path='/perfilPersonal/:id' component={PerfilPersonal} />
     <Route exact path='/login/' component={Login} />
     <Route exact path='/registro/' component={Registro} />
     <Route component={Footer} />
