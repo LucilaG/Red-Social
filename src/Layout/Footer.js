@@ -8,7 +8,7 @@ class Footer extends Component {
     return (
       <div className="App">
         
-        Footer
+        by Lucila Gaudio
 
         
       </div>
